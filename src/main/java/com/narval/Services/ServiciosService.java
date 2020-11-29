@@ -10,18 +10,18 @@ import com.narval.Models.Vinicola;
 import com.narval.repository.ServicioRepository;
 import com.narval.repository.VinicolaRepository;
 
-
-
 @Service
 public class ServiciosService {
 	@Autowired
 	ServicioRepository servicioRepository;
-	
-	
+
 	public List<Servicio> findByName(String name) {
-		
 		List<Servicio> dbServicios = servicioRepository.findByName(name);
-		
-	    return dbServicios;
+		if (name != null) {
+			System.out.println(name);
+			List<Servicio> dbServicio = servicioRepository.findByName(name);
+			return dbServicio;
+		}
+		return servicioRepository.findAll();
 	}
 }

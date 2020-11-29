@@ -10,7 +10,7 @@
 </head>
 <body>
    
-		<img class="wave" src="/img/WinerieRegister.png">
+		<img class="wave" src="img/SignUp.png">
 		<div class="container">
 			<div class="img">
 				
@@ -50,7 +50,10 @@
 						</div>
 					 </div>
 
-
+					<select name="role">
+						<option th:each="rol : ${roles}"><span th:text="${rol}"></span></option>
+					
+					</select>
 					 <div class="input-div one">
 						<div class="i">
 								<i class="fas fa-user"></i>

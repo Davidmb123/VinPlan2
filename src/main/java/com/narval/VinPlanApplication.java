@@ -15,5 +15,4 @@ public class VinPlanApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(VinPlanApplication.class, args);
 	}
-
 }

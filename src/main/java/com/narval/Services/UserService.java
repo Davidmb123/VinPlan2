@@ -28,25 +28,24 @@ import com.narval.repository.UserRepository;
 
 @Service
 public class UserService {
-	
+
 	@Autowired
-	 UserRepository userRepository;
-	
+	UserRepository userRepository;
+
 	@Autowired
 	RolesRepository rolesRepository;
-	
+
 	@Autowired
 	PasswordEncoder passwordEncoder;
-	
-	@Autowired 
+
+	@Autowired
 	TokenRepository tokenRepository;
-	
+
 	@Autowired
 	EmailService emailService;
-	
-	
-	public boolean addUser(UserRegistrationForm userRegistration,String role) {
-		
+
+	public boolean addUser(UserRegistrationForm userRegistration, String role) {
+
 		System.out.println(role);
 		Usuario user = new Usuario();
 		user.setUsername(userRegistration.getUsername());
@@ -56,41 +55,41 @@ public class UserService {
 		user.setLastname(userRegistration.getLastname());
 		user.setActive(0);
 		System.out.println(role);
-		Roles rol=rolesRepository.getRoleByName(role);
+		Roles rol = rolesRepository.getRoleByName(role);
 		user.addRoll(rol);
 		rol.addUser(user);
 		rolesRepository.save(rol);
-		if(userRepository.getUserByUsername(user.getUsername())!=null) {
+		if (userRepository.getUserByUsername(user.getUsername()) != null) {
 			return false;
 		}
-		
-		Token confirmationToken =new Token(user);
+
+		Token confirmationToken = new Token(user);
 		confirmationToken.setToken(UUID.randomUUID().toString());
 		System.out.println(confirmationToken.getToken());
 		tokenRepository.save(confirmationToken);
-		
-		SimpleMailMessage mailMessage= new SimpleMailMessage();
+
+		SimpleMailMessage mailMessage = new SimpleMailMessage();
 		mailMessage.setTo(user.getEmail());
 		mailMessage.setSubject("No reply");
 		mailMessage.setFrom("david.murillo@cetys.edu.mx");
 		mailMessage.setText("Para confirmar tu cuenta, por favor, ingrese al siguiente link \n"
-		+"http://localhost:8080/confirm-account?token="+confirmationToken.getToken());
+				+ "http://localhost:8080/confirm-account?token=" + confirmationToken.getToken());
 		emailService.sendEmail(mailMessage);
-		
+
 		return true;
 
 	}
 
-	public static UserDetails currentUserDetails(){
-	    SecurityContext securityContext = SecurityContextHolder.getContext();
-	    Authentication authentication = securityContext.getAuthentication();
-	    if (authentication != null) {
-	        Object principal = authentication.getPrincipal();
-	        return principal instanceof UserDetails ? (UserDetails) principal : null;
-	    }
-	    return null;
+	public static UserDetails currentUserDetails() {
+		SecurityContext securityContext = SecurityContextHolder.getContext();
+		Authentication authentication = securityContext.getAuthentication();
+		if (authentication != null) {
+			Object principal = authentication.getPrincipal();
+			return principal instanceof UserDetails ? (UserDetails) principal : null;
+		}
+		return null;
 	}
-	
+
 	public int getIdByEmail(String email) {
 		return userRepository.getIdByEmail(email);
 	}

@@ -28,6 +28,6 @@ public interface UserRepository extends CrudRepository<Usuario, Integer>{
 	   	@Modifying
 	   	@Query("update Usuario u set u.active = 1 where u.id= :id")
 	   	void activateUser(@Param("id") int id);
-
+	   	
 }
 

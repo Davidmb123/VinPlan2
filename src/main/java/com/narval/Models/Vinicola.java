@@ -13,44 +13,44 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Vinicola", schema="vin-plan")
+@Table(name = "Vinicola", schema = "vin-plan")
 public class Vinicola {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
 
-    @Column(name="nombre", length=50, nullable=false, unique=false)
+    @Column(name = "nombre", length = 50, nullable = false, unique = false)
     private String nombre;
 
-    @Column(name="direccion", length=50, nullable=true, unique=false)
+    @Column(name = "direccion", length = 50, nullable = true, unique = false)
     private String direccion;
 
-    @Column(name="codigopost", length=10, nullable=false, unique=false)
+    @Column(name = "codigopost", length = 10, nullable = false, unique = false)
     private int codigo_post;
 
-    @Column(name="descripcion", length=999, nullable=true, unique=false)
+    @Column(name = "descripcion", length = 999, nullable = true, unique = false)
     private String descripcion;
-    
-    @Column(name="logo", length=100, nullable=true, unique=false)
+
+    @Column(name = "logo", length = 100, nullable = true, unique = false)
     private String logo;
-    
+
     public String getDescripcion() {
-		return descripcion;
-	}
+        return descripcion;
+    }
 
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
-	
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
 
-	public String getLogo() {
-		return logo;
-	}
+    public String getLogo() {
+        return logo;
+    }
 
-	public void setLogo(String logo) {
-		this.logo = logo;
-	}
-	
+    public void setLogo(String logo) {
+        this.logo = logo;
+    }
+
     public int getId() {
         return this.id;
     }
@@ -80,8 +80,8 @@ public class Vinicola {
     }
 
     public void setCodigoPost(int codigo_post) {
-        this.codigo_post= codigo_post;
+        this.codigo_post = codigo_post;
     }
-//fin
-    
+    // fin
+
 }

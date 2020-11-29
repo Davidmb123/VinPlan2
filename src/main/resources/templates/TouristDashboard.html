@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <title>VinPlan</title>
     <link rel="shortcut icon" href="/img/VinPlanLogo_preview_rev_1.png" />
+    <link rel="stylesheet" href="/css/ServiciosStyle.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-
 </head>
 <body>
 
@@ -51,11 +51,9 @@
                 <a class="nav-link" href="Contactanos.html">CONTACTANOS</a>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0" th:action="@{/TouristDashboard}" method="post" >
-            <input class="form-control mr-sm-2" type="search" placeholder="Ubicacion" aria-label="Search" id="ubicacion" name="ubicacion">
-            <input class="form-control mr-sm-2" type="search" placeholder="Fecha" aria-label="Search">
-
-            <button class="btn btn-outline my-2 my-sm-0" type="submit">BUSCAR</button>
+        <form class="form-inline my-2 my-lg-0" th:action="@{/TouristDashboard}" method="POST">
+            <input  type="text" placeholder="vinicola" aria-label="nombre" name="nombre" id="nombre" th:value="${nombre}"/>
+            <input class="btn btn-outline my-2 my-sm-0" type="submit" value="Search"/>
         </form>
     </div>
 </nav>
@@ -107,42 +105,64 @@
     <div class="row">
         <div class="col">
             <article>
-                <figure class="figure">
-                    <img class="figure-img img-fluid rounded"
-                     src="C:\Users\bereg\Downloads\VinPlan2-DavidBranch\VinPlan2-DavidBranch\src\main\resources\static\img/copas.jpg" alt="">
-                </figure>
-                <h5>Acerca de nosotros</h5>
-                <blockquote class="blockquote">Vine Plan es una plataforma diseñada para el turismo enológico.</blockquote>
-                <p>Orientada a vinícolas y personas interesadas por el vino, Vin Plan es una plataforma 
-                    que permite a usuarios realizar reservaciones en distintas vinícolas desde una sola plataforma
-                    por su parte VIn Plan permite a las vinicolas registrarse para que una mayor cantidad de personas lleguen a ellas
-                    y sus servicios.  </p>
-            </article>
-        </div>
-        <div class="col">
-            <article>
-                <figure class="figure">
-                    <img class="figure-img img-fluid rounded" 
-                    src="C:\Users\bereg\Downloads\VinPlan2-DavidBranch\VinPlan2-DavidBranch\src\main\resources\static\img/slide0.jpg" alt="">
-                </figure>
-                <h5>Misión</h5>
-                <blockquote class="blockquote">Transformar la experiencia turística en los valles vinícolas.</blockquote>
-                <p> A través de una plataforma amigable que apoye al empresario 
-                    y al viajero a planear y organizar sus visitas a través de transacciones administrativas y operativas eficientes, 
-                    cómodas y seguras, así como contribuir en la profesionalización del segmento turístico enológico generando una red
-                     nacional de enoturismo con responsabilidad, honestidad y empatía. </p>
-            </article>
-        </div>
-        <div class="col">
-            <article>
-                <figure class="figure">
-                    <img class="figure-img img-fluid rounded" src="C:\Users\bereg\Downloads\VinPlan2-DavidBranch\VinPlan2-DavidBranch\src\main\resources\static\img/corchos.jpg"  alt="">
-                </figure>
-                <h5>Visión</h5>
-                <blockquote class="blockquote">Posicionarnos como la plataforma referente para la comunicación y obtención de servicios y productos
-                    enoturísticos del país.</blockquote>
-                <p>A partir de un esfuerzo compartido, contribuyendo a los sectores involucrados
-                    en la eficiencia de procesos, profesionalización y fuente de indicadores.</p>
+                <div>
+                    <table>
+                     
+                       <tbody>
+                           <tr th:if="${listServicio==null}">
+                                <td colspan="2"> No hay servicios</td>
+                                <div class="row">
+                                    <div class="col">
+                                        <article>
+                                            <figure class="figure">
+                                                <img class="figure-img img-fluid rounded"
+                                                src="/copas.jpg" alt="">
+                                            </figure>
+                                            <h5>Acerca de nosotros</h5>
+                                            <blockquote class="blockquote">Vine Plan es una plataforma diseñada para el turismo enológico.</blockquote>
+                                            <p>Orientada a vinícolas y personas interesadas por el vino, Vin Plan es una plataforma 
+                                                que permite a usuarios realizar reservaciones en distintas vinícolas desde una sola plataforma
+                                                por su parte Vn Plan permite a las vinicolas registrarse para que una mayor cantidad de personas lleguen a ellas
+                                                y sus servicios.  </p>
+                                        </article>
+                                    </div>
+                                    <div class="col">
+                                        <article>
+                                            <figure class="figure">
+                                                <img class="figure-img img-fluid rounded" 
+                                                src="/slide0.jpg" alt="">
+                                            </figure>
+                                            <h5>Misión</h5>
+                                            <blockquote class="blockquote">Transformar la experiencia turística en los valles vinícolas.</blockquote>
+                                            <p> A través de una plataforma amigable que apoye al empresario 
+                                                y al viajero a planear y organizar sus visitas a través de transacciones administrativas y operativas eficientes, 
+                                                cómodas y seguras, así como contribuir en la profesionalización del segmento turístico enológico generando una red
+                                                nacional de enoturismo con responsabilidad, honestidad y empatía. </p>
+                                        </article>
+                                    </div>
+                                    <div class="col">
+                                        <article>
+                                            <figure class="figure">
+                                                <img class="figure-img img-fluid rounded" src="/corchos.jpg"  alt="">
+                                            </figure>
+                                            <h5>Visión</h5>
+                                            <blockquote class="blockquote">Posicionarnos como la plataforma referente para la comunicación y obtención de servicios y productos
+                                                enoturísticos del país.</blockquote>
+                                            <p>A partir de un esfuerzo compartido, contribuyendo a los sectores involucrados
+                                                en la eficiencia de procesos, profesionalización y fuente de indicadores.</p>
+                                        </article>
+                                    </div>
+                                </div>
+                           </tr>
+                           <tr th:each="servicio : ${listServicios}">
+                               <td><span th:text="${servicio.nombre}">Servicio</span></td>
+                               <td><span th:text="${servicio.tipo}">Tipo</span></td>
+                               <td><span th:text="${servicio.descripcion}">Descripcion</span></td>
+                               <td><span th:next="${servicio.Vinicola}">Vinicola</span></td>
+                           </tr>
+                       </tbody>
+                   </table>
+               </div>
             </article>
         </div>
     </div>

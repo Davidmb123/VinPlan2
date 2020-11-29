@@ -1,0 +1,21 @@
+package com.narval.controllers;
+
+import com.narval.Services.MyFirstScheduleService;
+import com.narval.Services.UserService;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller
+public class MyFirstScheduleController {
+    @Autowired
+	MyFirstScheduleService myfirstscheduleservice;
+	
+	@GetMapping("/MyFirstSchedule")
+	public String MyFirstSchedule(Model model) {
+		
+		return "MyFirstSchedule";
+	}
+}

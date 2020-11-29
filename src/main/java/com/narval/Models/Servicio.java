@@ -21,6 +21,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "servicio", schema = "vin-plan")
+
 public class Servicio {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,7 +39,7 @@ public class Servicio {
 	@Column(name = "descripcion", length = 500, nullable = false, unique = false)
 	private String descripcion;
 
-	@Column(name = "fechaInicio", nullable = true, unique = false)
+	@Column(name = "fechainicio", nullable = true, unique = false)
 	private Date fechaInicio;
 
 	@Column(name = "fechafinal", nullable = true)
@@ -55,15 +56,18 @@ public class Servicio {
 	public void setId(int id) {
 		this.id = id;
 	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
 	public String getTipo() {
-		return tipo;
+		return this.tipo;
 	}
 
 	public void setTipo(String tipo) {
-		this.tipo=tipo;
-	}
-	public String getNombre() {
-		return nombre;
+		this.tipo = tipo;
+
 	}
 
 	public void setNombre(String nombre) {
