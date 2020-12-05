@@ -13,9 +13,17 @@ import com.narval.Models.Usuario;
 
 public interface ServicioRepository extends JpaRepository<Servicio, Long> {
 
-	@Query(value = "SELECT s.id, s.nombre, s.tipo, s.costo, s.descripcion, s.fechainicio, s.fechafinal, s.Vinicola_idVinicola, s.last_update, s.maximoAforo FROM Servicio s LEFT JOIN vinicola v on s.Vinicola_idVinicola = v.id where v.nombre LIKE %?1%", nativeQuery = true)
-	public List<Servicio> findByName(String name);
-	
 	@Procedure
-	void crearservicios(String nombre,String tipoServicio,double costo, String Descripcion, int id);
+	void crearservicios(String NombreServicio, String TipoServicio, double CostoServicio, String DescServicio, int IdVinicola);
+
+	@Procedure
+	void ModificarServicio(int id, String nombre, String Tipo, double Costo, String desc, Timestamp fecha, int act);
+
+	@Procedure
+	void eliminarVinicola(int id);
+
+	@Query(value="{call retrieveServicio(:name)}", nativeQuery = true)
+   	List<Servicio> retriveServicio(@Param("name") String name);
+   	
+	
 }
