@@ -41,8 +41,22 @@ public class Usuario {
     @Column(name="email", length=254, nullable=false, unique=false)
     private String email;
     
-    @Column(name="active", nullable=false)
-	private int active;        
+    @Column(name="gender", length=10, nullable=false, unique=false)
+    private String gender;
+    
+    @Column(name="birthday", length=50, nullable=false, unique=false)
+    private String birthday;
+    
+    @Column(name="activo", nullable=false)
+	private int activo;   
+    
+    @Column(name="tipo_usuario_id", length=50, nullable=false, unique=false)
+    private int tipo_usuario_id;
+    
+  
+    
+    
+    
     
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name="user_roles",
@@ -89,6 +103,15 @@ public class Usuario {
     public void setLastname(String lastname) {
         this.lastname = lastname;
     }
+    
+    public String getBirthday() {
+        return this.birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday= birthday;
+    }
+
 
     public String getHashed_password() {
         return this.hashed_password;
@@ -105,16 +128,28 @@ public class Usuario {
     public void setEmail(String email) {
         this.email = email;
     }
+    public void setGender(String gender) {
+    	this.gender=gender;
+    }
+    
+    public String getGender() {
+    	return gender;
+    }
     
 	public int isActive() {
-		return active;
+		return activo;
 	}
 
-	public void setActive(int active) {
-		this.active = active;
+	public void setActive(int activo) {
+		this.activo = activo;
 	}
 	
-	
+	public void setTipoUsuario(int tipoUsuario) {
+		this.tipo_usuario_id=tipoUsuario;
+	}
+	public int getTipoUsuario() {
+		return this.tipo_usuario_id;
+	}
 	
 
 

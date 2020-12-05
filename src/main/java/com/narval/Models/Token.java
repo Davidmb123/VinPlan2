@@ -31,11 +31,7 @@ public class Token {
 	@JoinColumn(name="usuario_id", referencedColumnName = "id")    
 	private Usuario usuario;
 	
-	@Column(name="expiration_time", nullable=true)
-	private Date expirationTime;
-	
-	@Column(name="active", nullable=false)
-	private boolean active;
+
 
 	public Token() {
 	    	
@@ -43,7 +39,6 @@ public class Token {
 	
 	public Token(Usuario user) {
 		this.usuario=user;
-	    this.active=false;    	
 	}
 	public String getToken() {
 		return token;
@@ -62,20 +57,8 @@ public class Token {
 		this.usuario = user;
 	}
 
-	public Date getExpirationTime() {
-		return expirationTime;
-	}
 
-	public void setExpirationTime(Date expirationTime) {
-		this.expirationTime = expirationTime;
-	}
 
-	public boolean isActive() {
-		return active;
-	}
 
-	public void setActive(boolean active) {
-		this.active = active;
-	}
 	
 }

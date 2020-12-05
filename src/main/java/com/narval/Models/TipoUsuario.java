@@ -14,8 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Tipo_Usuarios", schema="vin-plan")
-public class Tipo_Usuario {
+@Table(name = "tipo_usuario", schema="vin-plan")
+public class TipoUsuario {
     
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +25,7 @@ public class Tipo_Usuario {
     private String name;
 
     @Column(name="description", length=1000, nullable=false, unique=false)
-    private String description;
+    private String Description;
 
     public int getId() {
         return this.id;
@@ -44,11 +44,11 @@ public class Tipo_Usuario {
     }
 
     public String getDescription() {
-        return this.description;
+        return this.Description;
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        this.Description = description;
     }
 
 }

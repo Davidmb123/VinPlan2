@@ -49,25 +49,38 @@
 					<input class="input" type="text" placeholder="" name="name" required> 
 						</div>
 					 </div>
-
-					<select name="role">
-						<option th:each="rol : ${roles}"><span th:text="${rol}"></span></option>
-					
-					</select>
-					 <div class="input-div one">
-						<div class="i">
-								<i class="fas fa-user"></i>
-						</div>
-						<div class="div">
-							<h5>Apellido</h5>
-					<input class="input" type="text" placeholder="" name="lastname" required> 
-						</div>
-					 </div>
 					   
-						<select name="role">
+					<select name="role">
                         <option th:each="rol : ${roles}"><span th:text="${rol}"></span></option>
 
                     </select>
+                    <select name="tipo">
+                        <option th:each="tipo : ${tiposUsuario}"><span th:text="${tipo}"></span></option>
+
+                    </select>
+                   	<div class="input-div one">
+						<div class="i"><i class="fas fa-user"></i></div>
+						<div class="div">
+							<h5>Apellido</h5>
+						<input class="input" type="text" placeholder="" name="lastname" required> 
+						</div>
+					 </div>
+					 
+					 <div class="input-div one">
+						<div class="i"><i class="fas fa-user"></i></div>
+						<div class="div">
+							<h5>Género</h5>
+						<input class="input" type="text" placeholder="" name="gender" required> 
+						</div>
+					 </div>
+					 
+					 <div class="input-div one">
+						<div class="i"><i class="fas fa-user"></i></div>
+						<div class="div">
+							<h5>Cumpleaños</h5>
+						<input class="input" type="date" placeholder="" name="birthday" required> 
+						</div>
+					 </div>
 					<div class="input-div one">
 						<div class="i">
 								<i class="fas fa-user"></i>
@@ -78,13 +91,11 @@
 						</div>
 					 </div>
 
-					 <div class="input-div one">
-						<div class="i">
-								<i class="fas fa-user"></i>
-						</div>
+					<div class="input-div one">
+						<div class="i"><i class="fas fa-user"></i></div>
 						<div class="div">
 							<h5>Confirma ContraseÃ±a</h5>
-					<input class="input" type="password" placeholder="" name="password_confirmation" required>
+							<input class="input" type="password" placeholder="" name="password_confirmation" required>
 						</div>
 					 </div>
 					
@@ -93,7 +104,7 @@
 						<button type="submit" class="btn"
 							onclick="window.location.href='/'">Cancelar</button>
 					</div>
-	
+					
 				</form>
 				
 			</div>

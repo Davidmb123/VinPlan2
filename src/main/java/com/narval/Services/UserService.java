@@ -23,6 +23,7 @@ import com.narval.Models.Roles;
 import com.narval.Models.Token;
 import com.narval.Models.Usuario;
 import com.narval.repository.RolesRepository;
+import com.narval.repository.TipoUsuarioRepository;
 import com.narval.repository.TokenRepository;
 import com.narval.repository.UserRepository;
 
@@ -40,20 +41,25 @@ public class UserService {
 
 	@Autowired
 	TokenRepository tokenRepository;
-
+	
 	@Autowired
 	EmailService emailService;
 
-	public boolean addUser(UserRegistrationForm userRegistration, String role) {
+	@Autowired 
+	TipoUsuarioRepository tipoUsuarioRepository;
+	public boolean addUser(UserRegistrationForm userRegistration, String role,String tipo) {
 
 		System.out.println(role);
 		Usuario user = new Usuario();
+		int tipoUsuarioId=tipoUsuarioRepository.getIdByName(tipo);
 		user.setUsername(userRegistration.getUsername());
 		user.setEmail(userRegistration.getEmail());
 		user.setName(userRegistration.getName());
 		user.setHashed_password(passwordEncoder.encode(userRegistration.getPassword()));
 		user.setLastname(userRegistration.getLastname());
-		user.setActive(0);
+		user.setGender(userRegistration.getGender());
+		user.setBirthday(userRegistration.getBirthday());
+		user.setTipoUsuario(tipoUsuarioId);
 		System.out.println(role);
 		Roles rol = rolesRepository.getRoleByName(role);
 		user.addRoll(rol);
