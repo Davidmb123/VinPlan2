@@ -50,7 +50,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		
 		auth.userDetailsService(userDetailsService());
     }
-    
+	
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
     	http.authorizeRequests()
@@ -60,13 +60,16 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     	.antMatchers("/login").permitAll()
     	.antMatchers("/Error404").permitAll()
     	.antMatchers("/confirm-account").permitAll()
+    	.antMatchers("/AddPuntoTuristico").permitAll()
+    	.antMatchers("/AddServicio").permitAll()
     	.antMatchers("/css/*").permitAll()
     	.antMatchers("/img/*").permitAll()
     	.antMatchers("/static/*").permitAll()
     	.antMatchers("/templates").permitAll()
     	.antMatchers("/SignUp/*").permitAll()
     	.antMatchers("/SignUp").permitAll()
-
+    	
+    	
     	.anyRequest().authenticated()
     	.and()
     	.formLogin().permitAll()

@@ -64,7 +64,10 @@
 						</div>
 					 </div>
 					   
+						<select name="role">
+                        <option th:each="rol : ${roles}"><span th:text="${rol}"></span></option>
 
+                    </select>
 					<div class="input-div one">
 						<div class="i">
 								<i class="fas fa-user"></i>

@@ -3,6 +3,10 @@ package com.narval.Services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import com.narval.Dto.form.VinRegistrationForm;
@@ -14,6 +18,8 @@ import com.narval.repository.VinicolaRepository;
 public class VinicolaService {
 	@Autowired
 	VinicolaRepository vinicolaRepository;
+	@Autowired
+	UserService userService;
 
 	public List<Vinicola> findAll() {
 
@@ -29,11 +35,14 @@ public class VinicolaService {
 
 	public boolean addVinicola(VinRegistrationForm vinRegistrationForm) {
 		Vinicola vin = new Vinicola();
-		vin.setNombre(vinRegistrationForm.getNombre());
-		vin.setDireccion(vinRegistrationForm.getDireccion());
-		vin.setCodigoPost(vinRegistrationForm.getCodigo_post());
-		vinicolaRepository.save(vin);
-		vin.getId();
+		String nombre=(vinRegistrationForm.getNombre());
+		String direccion=(vinRegistrationForm.getDireccion());
+		int codigopostal=(vinRegistrationForm.getCodigo_post());
+
+		UserDetails userDetails=userService.currentUserDetails();
+        int id=userService.getIdByEmail(userDetails.getUsername());
+
+		vinicolaRepository.Addvinicola(id, nombre, direccion, codigopostal);
 
 		return true;
 	}
@@ -49,4 +58,5 @@ public class VinicolaService {
 		vinicola.setNombre(vinicolaEditForm.getNombre());
 		vinicolaRepository.save(vinicola);
 	}
+
 }
